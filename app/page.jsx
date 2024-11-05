@@ -7,7 +7,7 @@ const HomePage = () => {
   const [cart, setCart] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
   const [loading, setLoading] = useState(true)
-  const userId = 1 // L'ID de l'utilisateur doit être dynamique, ici c'est juste un exemple
+  const userId = 1
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -50,7 +50,6 @@ const HomePage = () => {
         },
         body: JSON.stringify({ userId, productId, quantity: 1 }), // Ajouter 1 par défaut
       })
-      // Mettre à jour le panier localement
       setCart((prevCart) => {
         const productInCart = prevCart.find(
           (item) => item.produit_id === productId
@@ -79,7 +78,6 @@ const HomePage = () => {
         },
         body: JSON.stringify({ userId, productId }),
       })
-      // Mettre à jour le panier localement
       setCart((prevCart) =>
         prevCart.filter((item) => item.produit_id !== productId)
       )
@@ -140,15 +138,15 @@ const HomePage = () => {
       <h2 className="text-xl font-bold mt-10 mb-4">Votre Panier</h2>
       {cart.length > 0 ? (
         <div className="bg-white p-4 rounded-lg shadow-md">
-          {cart.map((item) => (
+          {cart.map((produit) => (
             <div
-              key={item.produit_id}
+              key={produit.produit_id}
               className="flex justify-between items-center"
             >
-              <span>{`Produit ID: ${item.produit_id} - Quantité: ${item.quantite}`}</span>
+              <span>{`Produit ID: ${produit.produit_id} - Quantité: ${produit.quantite}`}</span>
               <button
                 className="bg-red-500 text-white p-2 rounded-lg"
-                onClick={() => handleRemoveFromCart(item.produit_id)}
+                onClick={() => handleRemoveFromCart(produit.produit_id)}
               >
                 Supprimer
               </button>
