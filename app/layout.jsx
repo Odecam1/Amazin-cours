@@ -7,8 +7,8 @@ export const metadata = {
 
 const RootLayout = ({ children }) => (
   <html lang="fr">
-    <body className={`antialiased`}>
-      {children}
-    </body>
+    <body className={`antialiased`}>{children}</body>
   </html>
 )
+
+export default RootLayout
