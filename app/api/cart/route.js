@@ -1,4 +1,4 @@
-import { pool } from "@/app/api/bdd"
+import { mySqlPool } from "@/app/api/bdd"
 
 export const POST = async (request) => {
   const { userId, productId, quantity } = await request.json()
